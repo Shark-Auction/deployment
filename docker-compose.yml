@@ -1,0 +1,53 @@
+version: '3'
+services:
+  nginx:
+      image: nginx:latest
+      restart: unless-stopped
+      tty: true
+      volumes:
+        - ./nginx.conf:/etc/nginx/conf.d/my-app.conf
+        - ./logs/nginx:/var/log/nginx
+        - ./nginx-logrotate.conf:/etc/logrotate.d/nginx-logrotate.conf
+      ports:
+        - "80:80"
+      depends_on:
+        - fe-sharkauction
+        - be-sharkauction
+
+  fe-sharkauction:
+    image: phuctth/fe-sharkauction
+    restart: unless-stopped
+    tty: true
+
+  be-sharkauction:
+    image: phuctth/sharkauction
+    restart: unless-stopped
+    tty: true
+    depends_on:
+      - db
+    environment:
+      MYSQL_HOST: db_jewelryauction
+      MYSQL_PORT: 3306
+      MYSQL_USER: phuctth
+      MYSQL_PASSWORD: EXE201
+      MYSQL_DATABASE: sharkauction
+    volumes:
+      - /root/images:/app/uploads
+      - ./logs/be-sharkauction:/var/log
+  db-sharkauction:
+    image: mysql:latest
+    restart: unless-stopped
+    tty: true
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_ROOT_USER: root
+      MYSQL_ROOT_PASSWORD: EXE201
+      MYSQL_DATABASE: sharkauction
+      MYSQL_USER: phuctth
+      MYSQL_PASSWORD: EXE201
+    volumes:
+      - mysql-data:/var/lib/mysql
+      
+volumes:
+  mysql-data:
