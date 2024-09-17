@@ -18,6 +18,8 @@ services:
     image: phuctth/fe-sharkauction
     restart: unless-stopped
     tty: true
+    ports:
+      - "3000:3000"
 
   be-sharkauction:
     image: phuctth/sharkauction
