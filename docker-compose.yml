@@ -26,7 +26,7 @@ services:
     depends_on:
       - db
     environment:
-      MYSQL_HOST: db_jewelryauction
+      MYSQL_HOST: db-sharkauction
       MYSQL_PORT: 3306
       MYSQL_USER: phuctth
       MYSQL_PASSWORD: EXE201
