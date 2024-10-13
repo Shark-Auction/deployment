@@ -19,7 +19,7 @@ services:
     restart: unless-stopped
     tty: true
     ports:
-      - "5173:80"
+      - "5173:70"
 
   be-sharkauction:
     image: phuctth/sharkauction
