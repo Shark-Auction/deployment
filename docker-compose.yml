@@ -11,7 +11,6 @@ services:
       ports:
         - "80:80"
       depends_on:
-        - fe-sharkauction
         - be-sharkauction
   be-sharkauction:
     image: phuctth/sharkauction
