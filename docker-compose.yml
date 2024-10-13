@@ -11,13 +11,22 @@ services:
       ports:
         - "80:80"
       depends_on:
+        - fe-sharkauction
         - be-sharkauction
+
+  fe-sharkauction:
+    image: phuctth/fe-sharkauction-production
+    restart: unless-stopped
+    tty: true
+    ports:
+      - "5173:80"
+
   be-sharkauction:
     image: phuctth/sharkauction
     restart: unless-stopped
     tty: true
     depends_on:
-      - db-sharkauction
+      - db
     environment:
       MYSQL_HOST: db-sharkauction
       MYSQL_PORT: 3306
