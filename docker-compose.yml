@@ -26,7 +26,7 @@ services:
     restart: unless-stopped
     tty: true
     depends_on:
-      - db
+      - db-sharkauction
     environment:
       MYSQL_HOST: db-sharkauction
       MYSQL_PORT: 3306
