@@ -15,7 +15,7 @@ services:
         - be-sharkauction
 
   fe-sharkauction:
-    image: phuctth/fe-sharkauction
+    image: phuctth/fe-sharkauction-production
     restart: unless-stopped
     tty: true
     ports:
